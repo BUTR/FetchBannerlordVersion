@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
 
@@ -21,7 +21,7 @@
     <Authors>Tyler Young, Aragas</Authors>
     <Company>BUTR</Company>
     <Description>Fetches the version metadata from a Mount &amp; Blade II: Bannerlord assembly directory.</Description>
-    <Copyright>Copyright © 2020-2021 Bannerlord's Unofficial Tools &amp; Resources</Copyright>
+    <Copyright>Copyright © 2020-2025 Bannerlord's Unofficial Tools &amp; Resources</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageTags>bannerlord</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
@@ -33,7 +33,6 @@
 
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    <PackageReference Include="System.Reflection.Metadata" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
