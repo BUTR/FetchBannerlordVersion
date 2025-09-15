@@ -23,10 +23,10 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Setup .NET 8
+    - name: Setup .NET 9
       uses: actions/setup-dotnet@master
       with:
-        dotnet-version: 8.x.x
+        dotnet-version: 9.x.x
         include-prerelease: true
 
     - run: dotnet pack -c Release src/FetchBannerlordVersion.Models -o ./packages
