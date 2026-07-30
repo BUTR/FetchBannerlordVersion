@@ -10,6 +10,11 @@ on:
       - 'src/FetchBannerlordVersion.TypeScript/**.*'
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
 jobs:
   publish:
     if: false # Something is wrong with IO
@@ -44,22 +49,25 @@ jobs:
 
       - run: cd ./src/FetchBannerlordVersion.TypeScript && npm run test
 
-      - uses: actions/setup-node@v3.5.1
+      - name: Setup Node.js for NPM publish
+        uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: '22'
           registry-url: https://registry.npmjs.org/
           scope: '@butr'
 
-      - run: cd ./src/FetchBannerlordVersion.TypeScript && npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
+      - name: Update npm
+        run: npm install -g npm@latest
 
-      - uses: actions/setup-node@v3.5.1
+      - name: Publish to NPM (trusted publishing)
+        run: cd ./src/FetchBannerlordVersion.TypeScript && npm publish --access public
+
+      - uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: '22'
           registry-url: https://npm.pkg.github.com/
           scope: '@butr'
 
       - run: cd ./src/FetchBannerlordVersion.TypeScript && npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
